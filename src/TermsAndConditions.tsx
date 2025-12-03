@@ -1,35 +1,16 @@
-import React, { useMemo, useRef, useState } from "react";
+import React, { useState } from "react";
 import {
   Box,
   Typography,
   Container,
   Paper,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
   Chip,
   Button,
-  IconButton,
-  Tooltip,
-  AppBar,
-  Toolbar,
   Divider,
-  Drawer,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  TextField,
-  InputAdornment,
-  FormControlLabel,
-  Switch,
   Snackbar,
   Alert,
-  CssBaseline,
 } from "@mui/material";
-import { ThemeProvider, createTheme, useMediaQuery } from "@mui/material";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { } from "@mui/material";
 import DescriptionIcon from "@mui/icons-material/Description";
 import PhoneAndroidIcon from "@mui/icons-material/PhoneAndroid";
 import WifiOffIcon from "@mui/icons-material/WifiOff";
@@ -44,8 +25,6 @@ import LocationOffIcon from "@mui/icons-material/LocationOff";
 import EmailIcon from "@mui/icons-material/Email";
 import PrintIcon from "@mui/icons-material/Print";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import MenuIcon from "@mui/icons-material/Menu";
-import SearchIcon from "@mui/icons-material/Search";
 
 interface Section {
   id: string;
@@ -56,41 +35,10 @@ interface Section {
 }
 
 export default function TermsAndConditions() {
-  const [expanded, setExpanded] = useState<string | false>("section1");
-  const [drawerOpen, setDrawerOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
   const [agree, setAgree] = useState(false);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
-  const isDesktop = useMediaQuery("(min-width:900px)");
-  const sectionRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
-  const handleChange =
-    (panel: string) => (_event: React.SyntheticEvent, isExpanded: boolean) => {
-      setExpanded(isExpanded ? panel : false);
-    };
-
-  const handleExpandAll = () => {
-    setExpanded(false);
-    setTimeout(() => {
-      document.querySelectorAll(".MuiAccordion-root").forEach((accordion) => {
-        (accordion as HTMLElement).click();
-      });
-    }, 100);
-  };
-
-  const theme = useMemo(
-    () =>
-      createTheme({
-        palette: {
-          mode: darkMode ? "dark" : "light",
-          primary: { main: "#667eea" },
-          secondary: { main: "#764ba2" },
-        },
-        shape: { borderRadius: 12 },
-      }),
-    [darkMode]
-  );
+  const handleExpandAll = () => {};
 
   const sections: Section[] = [
     {
@@ -440,72 +388,71 @@ export default function TermsAndConditions() {
     },
   ];
 
-  const filteredSections = useMemo(
-    () =>
-      sections.filter((s) =>
-        s.title.toLowerCase().includes(searchQuery.trim().toLowerCase())
-      ),
-    [sections, searchQuery]
-  );
-
-  const handleScrollTo = (id: string) => {
-    const el = sectionRefs.current[id];
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-      setExpanded(id);
-      if (!isDesktop) setDrawerOpen(false);
-    }
-  };
-
   const handleAgree = () => {
     setAgree(true);
     setSnackbarOpen(true);
   };
 
-  const drawerWidth = 260;
-
   return (
-    <Box sx={{ minHeight: "100vh", backgroundColor: "#fafafa", py: { xs: 4, md: 6 } }}>
-      <Container maxWidth="md">
-        <Paper elevation={1} sx={{ p: { xs: 3, md: 4 } }}>
-          <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", mb: 2 }}>
-            <Box>
-              <Typography variant="h4" fontWeight="bold">Terms & Conditions</Typography>
-              <Typography variant="body2" color="text.secondary">Last Updated: December 2025</Typography>
-            </Box>
-            <Button variant="text" startIcon={<PrintIcon />} onClick={() => window.print()}>Print</Button>
+    <Box
+      sx={{
+        minHeight: "100vh",
+        background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+        py: { xs: 4, md: 6 },
+      }}
+    >
+      <Container maxWidth="lg">
+        <Box sx={{ textAlign: "center", mb: 5, color: "white" }}>
+          <Box sx={{ display: "inline-flex", p: 2, backgroundColor: "rgba(255,255,255,0.2)", borderRadius: "50%", mb: 2 }}>
+            <DescriptionIcon sx={{ fontSize: 50 }} />
           </Box>
-          <Typography variant="body1" sx={{ lineHeight: 1.8, mb: 2 }}>
-            These Terms & Conditions govern your use of the CardStudio application. By using the App, you agree to these Terms.
+          <Typography variant="h3" fontWeight="bold" gutterBottom sx={{ textShadow: "2px 2px 4px rgba(0,0,0,0.3)", fontSize: { xs: "2rem", md: "3rem" } }}>
+            Terms & Conditions
           </Typography>
-          <Box sx={{ display: "flex", gap: 1, mb: 3 }}>
-            <Button variant="outlined" size="small" onClick={handleExpandAll} sx={{ textTransform: "none" }}>Expand All</Button>
+          <Typography variant="h6" sx={{ opacity: 0.95, mb: 2 }}>CardStudio</Typography>
+        </Box>
+
+        <Paper elevation={8} sx={{ borderRadius: 3, overflow: "hidden", backgroundColor: "rgba(255, 255, 255, 0.98)" }}>
+          <Box sx={{ p: { xs: 3, md: 4 }, background: "linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)" }}>
+            <Typography variant="h5" fontWeight="bold" gutterBottom sx={{ color: "#2c3e50" }}>Welcome to CardStudio</Typography>
+            <Typography variant="body1" sx={{ fontSize: "1.05rem", lineHeight: 1.8, color: "#34495e" }}>
+              These Terms & Conditions ("Terms") govern your use of the CardStudio application ("App"). By installing or using the App, you agree to comply with these Terms. If you do not agree, please do not use the App.
+            </Typography>
+            <Box sx={{ mt: 2 }}>
+              <Button variant="text" startIcon={<PrintIcon />} onClick={() => window.print()} sx={{ textTransform: "none", color: "#667eea" }}>Print</Button>
+            </Box>
           </Box>
 
-          <Box>
+          <Box sx={{ p: { xs: 2, md: 3 } }}>
             {sections.map((section, index) => (
-              <Accordion key={section.id} expanded={expanded === section.id} onChange={handleChange(section.id)} sx={{ mb: 1, boxShadow: "none", border: "1px solid #e0e0e0", borderRadius: 1 }}>
-                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                  <Typography variant="h6" sx={{ fontSize: { xs: "1rem", md: "1.1rem" } }}>{index + 1}. {section.title}</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                  {section.content}
-                </AccordionDetails>
-              </Accordion>
+              <Box key={section.id} sx={{ mb: 3, p: 2, border: "1px solid #e0e0e0", borderRadius: 2 }}>
+                <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 1 }}>
+                  <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", width: 36, height: 36, borderRadius: "50%", backgroundColor: section.highlight ? "#667eea" : "#e0e0e0", color: section.highlight ? "white" : "#666" }}>
+                    {section.icon}
+                  </Box>
+                  <Typography variant="h6" sx={{ fontSize: { xs: "1rem", md: "1.1rem" }, color: section.highlight ? "#667eea" : "#2c3e50" }}>
+                    {index + 1}. {section.title}
+                  </Typography>
+                </Box>
+                <Divider sx={{ mb: 2 }} />
+                {section.content}
+              </Box>
             ))}
           </Box>
 
-          <Box sx={{ mt: 3, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <Box sx={{ p: { xs: 3, md: 4 }, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 2 }}>
             <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
               <CheckCircleIcon color={agree ? "success" : "disabled"} />
               <Typography variant="body2" color="text.secondary">{agree ? "You agree to the Terms" : "Please review the Terms"}</Typography>
             </Box>
-            <Button variant="contained" onClick={handleAgree} sx={{ textTransform: "none" }}>I Agree</Button>
+            <Button variant="contained" size="large" onClick={handleAgree} sx={{ textTransform: "none" }}>I Agree</Button>
+          </Box>
+
+          <Box sx={{ p: { xs: 3, md: 4 }, backgroundColor: "#f8f9fa", borderTop: "3px solid #667eea", textAlign: "center" }}>
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 1, fontWeight: "bold" }}>© 2025 CardStudio. All rights reserved.</Typography>
+            <Typography variant="caption" color="text.secondary">By using our application, you acknowledge that you have read and understood these terms.</Typography>
           </Box>
         </Paper>
-        <Box sx={{ textAlign: "center", mt: 2 }}>
-          <Typography variant="caption" color="text.secondary">© 2025 CardStudio. All rights reserved.</Typography>
-        </Box>
       </Container>
 
       <Snackbar open={snackbarOpen} autoHideDuration={2500} onClose={() => setSnackbarOpen(false)} anchorOrigin={{ vertical: "bottom", horizontal: "center" }}>
