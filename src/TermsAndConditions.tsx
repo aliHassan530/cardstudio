@@ -1,5 +1,6 @@
 // TermsAndConditions.tsx
 import React, { useState } from "react";
+// man
 import {
   Box,
   Typography,
@@ -260,6 +261,7 @@ export default function TermsAndConditions() {
       ),
     },
   ];
+
 
   const handleAgree = () => {
     setAgree(true);
