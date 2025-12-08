@@ -1,3 +1,4 @@
+// TermsAndConditions.tsx
 import React, { useState } from "react";
 import {
   Box,
@@ -10,8 +11,7 @@ import {
   Snackbar,
   Alert,
 } from "@mui/material";
-import { } from "@mui/material";
-import DescriptionIcon from "@mui/icons-material/Description";
+import DescriptionIcon from "@mui/icons-material/Description"; // kept for fallback
 import PhoneAndroidIcon from "@mui/icons-material/PhoneAndroid";
 import WifiOffIcon from "@mui/icons-material/WifiOff";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
@@ -48,30 +48,15 @@ export default function TermsAndConditions() {
       content: (
         <Box>
           <Typography variant="body1" sx={{ lineHeight: 1.8, mb: 2 }}>
-            CardStudio allows users to create, edit, and download custom
-            card designs such as Birthday Cards, Marriage Cards, and others. You
+            CardStudio allows users to create, edit, and download custom card
+            designs such as Birthday Cards, Marriage Cards, and others. You
             may import images, choose designs, and export your final card in PDF
             or image format.
           </Typography>
           <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap", mt: 2 }}>
-            <Chip
-              label="Card Design"
-              size="small"
-              color="primary"
-              variant="outlined"
-            />
-            <Chip
-              label="PDF Export"
-              size="small"
-              color="primary"
-              variant="outlined"
-            />
-            <Chip
-              label="Image Import"
-              size="small"
-              color="primary"
-              variant="outlined"
-            />
+            <Chip label="Card Design" size="small" color="primary" variant="outlined" />
+            <Chip label="PDF Export" size="small" color="primary" variant="outlined" />
+            <Chip label="Image Import" size="small" color="primary" variant="outlined" />
           </Box>
         </Box>
       ),
@@ -82,55 +67,19 @@ export default function TermsAndConditions() {
       icon: <WifiOffIcon />,
       content: (
         <Box>
-          <Box
-            sx={{
-              display: "grid",
-              gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
-              gap: 3,
-            }}
-          >
-            <Paper
-              elevation={0}
-              sx={{
-                p: 2.5,
-                backgroundColor: "#f0f4ff",
-                borderRadius: 2,
-                border: "1px solid #d0d9ff",
-              }}
-            >
-              <Typography
-                variant="h6"
-                fontWeight="bold"
-                color="primary"
-                gutterBottom
-              >
-                Offline Mode
-              </Typography>
+          <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" }, gap: 3 }}>
+            <Paper elevation={0} sx={{ p: 2.5, backgroundColor: "#f0f4ff", borderRadius: 2, border: "1px solid #d0d9ff" }}>
+              <Typography variant="h6" fontWeight="bold" color="primary" gutterBottom>Offline Mode</Typography>
               <Typography variant="body2" sx={{ lineHeight: 1.7 }}>
                 Basic functionality is available without an internet connection.
                 Create and edit cards locally on your device.
               </Typography>
             </Paper>
-            <Paper
-              elevation={0}
-              sx={{
-                p: 2.5,
-                backgroundColor: "#fff4f0",
-                borderRadius: 2,
-                border: "1px solid #ffd9cc",
-              }}
-            >
-              <Typography
-                variant="h6"
-                fontWeight="bold"
-                color="secondary"
-                gutterBottom
-              >
-                Online Mode
-              </Typography>
+            <Paper elevation={0} sx={{ p: 2.5, backgroundColor: "#fff4f0", borderRadius: 2, border: "1px solid #ffd9cc" }}>
+              <Typography variant="h6" fontWeight="bold" color="secondary" gutterBottom>Online Mode</Typography>
               <Typography variant="body2" sx={{ lineHeight: 1.7 }}>
                 Advanced features require an active internet connection and user
-                authentication through Firebase.
+                authentication through Firebase or other backend services.
               </Typography>
             </Paper>
           </Box>
@@ -139,249 +88,173 @@ export default function TermsAndConditions() {
     },
     {
       id: "section3",
-      title: "User Accounts",
+      title: "User Accounts & Authentication",
       icon: <AccountCircleIcon />,
       highlight: true,
       content: (
         <Box>
           <Typography variant="body1" sx={{ lineHeight: 1.8, mb: 2 }}>
-            If you choose to create an account, you agree to provide accurate
-            information. Firebase Authentication is used to manage login,
-            password reset, and account security.
+            If you create an account, you must provide accurate information. Authentication is handled via Firebase Authentication. We do not see your password in plain text.
           </Typography>
-          <Box
-            sx={{
-              p: 2,
-              backgroundColor: "#fff9e6",
-              borderRadius: 2,
-              borderLeft: "4px solid #ffc107",
-              mb: 2,
-            }}
-          >
-            <Typography
-              variant="body2"
-              fontWeight="bold"
-              color="warning.dark"
-              gutterBottom
-            >
-              Your Responsibility
-            </Typography>
+          <Box sx={{ p: 2, backgroundColor: "#fff9e6", borderRadius: 2, borderLeft: "4px solid #ffc107", mb: 2 }}>
+            <Typography variant="body2" fontWeight="bold" color="warning.dark" gutterBottom>Your Responsibility</Typography>
             <Typography variant="body2" sx={{ lineHeight: 1.7 }}>
-              You are responsible for keeping your login credentials
-              confidential and secure.
+              Keep your credentials secure. Notify us immediately at mesumnaqvi530@gmail.com if you suspect unauthorized access.
             </Typography>
           </Box>
           <Typography variant="body1" sx={{ lineHeight: 1.8 }}>
-            You may delete your account at any time. Deleting your account will
-            permanently remove all associated user data stored within Firebase.
+            You may request account deletion; deletion requests will remove user data from our servers and backups within the limits described in our Privacy Policy.
           </Typography>
         </Box>
       ),
     },
     {
       id: "section4",
-      title: "Permissions",
+      title: "Permissions & Device Access",
       icon: <SecurityIcon />,
       content: (
         <Box>
           <Typography variant="body1" sx={{ lineHeight: 1.8, mb: 2 }}>
-            The App may request the following permissions:
+            To provide features, the App may request permission(s) — we explain why each permission is needed below.
           </Typography>
           <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
             {[
-              {
-                title: "Internet Access",
-                desc: "Required for online features and authentication",
-              },
-              {
-                title: "Storage Access",
-                desc: "For importing images and saving your card designs",
-              },
+              { title: "Internet / Network", desc: "Required for online features, authentication, and syncing." },
+              { title: "Storage / Files", desc: "Needed to import images and export/save PDFs or images to your device." },
+              { title: "Camera", desc: "If you choose to capture images directly from your device." },
+              { title: "Print / Share", desc: "Used when you print or share your final card via system dialogs." },
             ].map((perm, idx) => (
-              <Box
-                key={idx}
-                sx={{
-                  display: "flex",
-                  alignItems: "flex-start",
-                  gap: 2,
-                  p: 2,
-                  backgroundColor: "#f8f9fa",
-                  borderRadius: 2,
-                }}
-              >
+              <Box key={idx} sx={{ display: "flex", alignItems: "flex-start", gap: 2, p: 2, backgroundColor: "#f8f9fa", borderRadius: 2 }}>
                 <CheckCircleIcon color="success" sx={{ mt: 0.5 }} />
                 <Box>
-                  <Typography variant="body1" fontWeight="bold">
-                    {perm.title}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    {perm.desc}
-                  </Typography>
+                  <Typography variant="body1" fontWeight="bold">{perm.title}</Typography>
+                  <Typography variant="body2" color="text.secondary">{perm.desc}</Typography>
                 </Box>
               </Box>
             ))}
           </Box>
-          <Typography
-            variant="body2"
-            sx={{ mt: 2, fontStyle: "italic", color: "text.secondary" }}
-          >
-            These permissions are required solely for the functioning of the
-            App's features and are not used to collect personal data without
-            your consent.
+          <Typography variant="body2" sx={{ mt: 2, fontStyle: "italic", color: "text.secondary" }}>
+            Permissions are used only for the stated purposes and will be requested at runtime. You can revoke permissions through your device settings.
           </Typography>
         </Box>
       ),
     },
     {
       id: "section5",
-      title: "User-Generated Content",
+      title: "User-Generated Content & Ownership",
       icon: <ImageIcon />,
       content: (
         <Box>
           <Typography variant="body1" sx={{ lineHeight: 1.8, mb: 2 }}>
-            Any images or content you import, upload, or create within the App
-            remain your property. You confirm that you have the necessary rights
-            to use such content.
+            Any images or content you import, upload, or create remain your property. By using content (images, text) that belongs to others, you confirm you have the rights to do so.
           </Typography>
-          <Box
-            sx={{
-              p: 2,
-              backgroundColor: "#e8f5e9",
-              borderRadius: 2,
-              borderLeft: "4px solid #4caf50",
-            }}
-          >
-            <Typography variant="body2" fontWeight="bold" color="success.dark">
-              We respect your ownership
-            </Typography>
-            <Typography variant="body2" sx={{ mt: 1 }}>
-              We do not store or reuse your images without your permission.
-            </Typography>
+          <Box sx={{ p: 2, backgroundColor: "#e8f5e9", borderRadius: 2, borderLeft: "4px solid #4caf50" }}>
+            <Typography variant="body2" fontWeight="bold" color="success.dark">We respect your ownership</Typography>
+            <Typography variant="body2" sx={{ mt: 1 }}>We do not use your images for any purpose without explicit permission.</Typography>
           </Box>
         </Box>
       ),
     },
     {
       id: "section6",
-      title: "Downloads",
+      title: "Downloads, Export & Sharing",
       icon: <DownloadIcon />,
       content: (
         <Typography variant="body1" sx={{ lineHeight: 1.8 }}>
-          You may download your card designs for personal use. We are not
-          responsible for how you share, publish, or distribute your downloaded
-          content.
+          You may download your designs for personal use (PDF, PNG, JPEG). We are not responsible for how you distribute or publish those files. Some exports may include metadata (e.g., creation date).
         </Typography>
       ),
     },
     {
       id: "section7",
-      title: "Data Collection & Privacy",
+      title: "Data Collection, Storage & Third-Party Services",
       icon: <PrivacyTipIcon />,
       highlight: true,
       content: (
         <Box>
           <Typography variant="body1" sx={{ lineHeight: 1.8, mb: 2 }}>
-            The App uses Firebase services for authentication. Only essential
-            user information such as email and password (securely hashed by
-            Firebase) is stored.
+            We use third-party services to provide functionality (authentication, data storage, analytics). Examples: Firebase (Auth, Firestore, Storage) and printing/sharing integrations.
           </Typography>
-          <Box
-            sx={{
-              p: 2,
-              backgroundColor: "#e3f2fd",
-              borderRadius: 2,
-              borderLeft: "4px solid #2196f3",
-            }}
-          >
-            <Typography variant="body2" fontWeight="bold" color="info.dark">
-              Privacy First
-            </Typography>
+          <Box sx={{ p: 2, backgroundColor: "#e3f2fd", borderRadius: 2, borderLeft: "4px solid #2196f3" }}>
+            <Typography variant="body2" fontWeight="bold" color="info.dark">Privacy First</Typography>
             <Typography variant="body2" sx={{ mt: 1 }}>
-              The App does not store additional personal data without your
-              consent. For more information, please refer to our Privacy Policy.
+              Only essential user information (e.g., email) is stored on servers. We do not sell personal data. For detailed information, see our Privacy Policy (link provided in the app and Play Store listing).
             </Typography>
           </Box>
+          <Typography variant="body2" sx={{ mt: 1 }}>
+            Third-party data processing is governed by those providers' policies (e.g., Firebase). We require processors to protect your data.
+          </Typography>
         </Box>
       ),
     },
     {
-      id: "section8",
-      title: "Limitations of Liability",
-      icon: <GavelIcon />,
-      content: (
-        <Typography variant="body1" sx={{ lineHeight: 1.8 }}>
-          We do not guarantee uninterrupted access to the App. We are not liable
-          for data loss, device malfunction, unauthorized account access, or
-          network issues.
-        </Typography>
-      ),
-    },
-    {
       id: "section9",
-      title: "Updates & Modifications",
+      title: "Limitations of Liability",
       icon: <UpdateIcon />,
       content: (
         <Typography variant="body1" sx={{ lineHeight: 1.8 }}>
-          We may update or modify these Terms at any time. Continued use of the
-          App after changes means you accept the updated Terms. We recommend
-          reviewing this page periodically.
+          We do our best to provide a stable service, but we are not liable for data loss, device malfunction, unauthorized access, or indirect damages. Use exported files at your own discretion.
         </Typography>
       ),
     },
     {
       id: "section10",
-      title: "Location Access",
+      title: "Location & Sensitive Data",
       icon: <LocationOffIcon />,
       content: (
         <Box>
           <Typography variant="body1" sx={{ lineHeight: 1.8, mb: 2 }}>
-            The App does <strong>not</strong> collect or track your real-time
-            location.
+            The App does <strong>not</strong> collect real-time location or any sensitive personal data by default. If future features require sensitive data, explicit consent will be requested and explained.
           </Typography>
           <Typography variant="body2" sx={{ lineHeight: 1.7 }}>
-            If in the future any feature requires access to your device's
-            location, it will only be requested for a specific purpose and will
-            be clearly explained within the App. You will have full control to
-            grant or deny this permission.
+            We will always show purpose and usage when requesting access to sensitive device features.
           </Typography>
         </Box>
       ),
     },
     {
       id: "section11",
-      title: "Contact Us",
+      title: "Children & Age Restrictions",
       icon: <EmailIcon />,
       content: (
         <Box>
           <Typography variant="body1" sx={{ lineHeight: 1.8, mb: 2 }}>
-            For any questions or concerns regarding these Terms, please feel
-            free to reach out to us:
+            The App is not intended for children under 13 (or applicable local age). If you are under the age required in your country, do not create an account or submit personal information.
           </Typography>
-          <Paper
-            elevation={0}
-            sx={{
-              p: 3,
-              backgroundColor: "#f5f5f5",
-              borderRadius: 2,
-              textAlign: "center",
-            }}
-          >
+          <Typography variant="body2">
+            If a parent or guardian believes their child provided personal information, contact us to request deletion.
+          </Typography>
+        </Box>
+      ),
+    },
+    {
+      id: "section12",
+      title: "Data Retention & Deletion",
+      icon: <PrintIcon />,
+      content: (
+        <Box>
+          <Typography variant="body1" sx={{ lineHeight: 1.8, mb: 2 }}>
+            We retain user data only as long as necessary to provide the service and for legal compliance. You may request data export or deletion via email: mesumnaqvi530@gmail.com.
+          </Typography>
+        </Box>
+      ),
+    },
+    {
+      id: "section13",
+      title: "Contact & Effective Date",
+      icon: <DescriptionIcon />,
+      content: (
+        <Box>
+          <Typography variant="body1" sx={{ lineHeight: 1.8, mb: 2 }}>
+            For questions about these Terms or our practices, email us at:
+          </Typography>
+          <Paper elevation={0} sx={{ p: 3, backgroundColor: "#f5f5f5", borderRadius: 2, textAlign: "center" }}>
             <EmailIcon sx={{ fontSize: 40, color: "#667eea", mb: 1 }} />
-            <Typography variant="h6" fontWeight="bold" gutterBottom>
-              Email Support
-            </Typography>
-            <Button
-              variant="contained"
-              href="mailto:mesumnaqvi530@gmail.com"
-              sx={{
-                backgroundColor: "#667eea",
-                "&:hover": { backgroundColor: "#5568d3" },
-                textTransform: "none",
-                px: 3,
-              }}
-            >
+            <Typography variant="h6" fontWeight="bold" gutterBottom>Email Support</Typography>
+            <Button variant="contained" href="mailto:mesumnaqvi530@gmail.com" sx={{ textTransform: "none", backgroundColor: "#667eea", "&:hover": { backgroundColor: "#5568d3" } }}>
               mesumnaqvi530@gmail.com
             </Button>
+            <Typography variant="caption" sx={{ display: "block", mt: 1 }}>Effective Date: December 8, 2025</Typography>
           </Paper>
         </Box>
       ),
@@ -394,17 +267,13 @@ export default function TermsAndConditions() {
   };
 
   return (
-    <Box
-      sx={{
-        minHeight: "100vh",
-        background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-        py: { xs: 4, md: 6 },
-      }}
-    >
+    <Box sx={{ minHeight: "100vh", background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)", py: { xs: 4, md: 6 } }}>
       <Container maxWidth="lg">
-        <Box sx={{ textAlign: "center", mb: 5, color: "white" }}>
-          <Box sx={{ display: "inline-flex", p: 2, backgroundColor: "rgba(255,255,255,0.2)", borderRadius: "50%", mb: 2 }}>
-            <DescriptionIcon sx={{ fontSize: 50 }} />
+          <Box sx={{ textAlign: "center", mb: 5, color: "white" }}>
+          {/* Header uses custom image favicon if available; fallback to DescriptionIcon */}
+          <Box sx={{ display: "inline-flex", p: 1.25, backgroundColor: "rgba(255,255,255,0.2)", borderRadius: "50%", mb: 2 }}>
+            <img src="/cardstudio-icon.svg" alt="Card Studio" style={{ width: 56, height: 56, objectFit: "contain" }} onError={(e)=>{ (e.target as HTMLImageElement).style.display='none'; }} />
+            <DescriptionIcon sx={{ fontSize: 50, display: "none" }} />
           </Box>
           <Typography variant="h3" fontWeight="bold" gutterBottom sx={{ textShadow: "2px 2px 4px rgba(0,0,0,0.3)", fontSize: { xs: "2rem", md: "3rem" } }}>
             Terms & Conditions
@@ -450,15 +319,13 @@ export default function TermsAndConditions() {
 
           <Box sx={{ p: { xs: 3, md: 4 }, backgroundColor: "#f8f9fa", borderTop: "3px solid #667eea", textAlign: "center" }}>
             <Typography variant="body2" color="text.secondary" sx={{ mb: 1, fontWeight: "bold" }}>© 2025 CardStudio. All rights reserved.</Typography>
-            <Typography variant="caption" color="text.secondary">By using our application, you acknowledge that you have read and understood these terms.</Typography>
+            <Typography variant="caption" color="text.secondary">By using our application, you acknowledge that you have read and understood these terms. For full details see our Privacy Policy available in the Play Store listing and inside the app.</Typography>
           </Box>
         </Paper>
       </Container>
 
-      <Snackbar open={snackbarOpen} autoHideDuration={2500} onClose={() => setSnackbarOpen(false)} anchorOrigin={{ vertical: "bottom", horizontal: "center" }}>
-        <Alert severity="success" variant="filled" onClose={() => setSnackbarOpen(false)}>
-          Thank you for agreeing to the Terms.
-        </Alert>
+      <Snackbar open={snackbarOpen} autoHideDuration={3000} onClose={() => setSnackbarOpen(false)} anchorOrigin={{ vertical: "bottom", horizontal: "center" }}>
+        <Alert severity="success" variant="filled" onClose={() => setSnackbarOpen(false)}>Thank you for agreeing to the Terms.</Alert>
       </Snackbar>
     </Box>
   );
